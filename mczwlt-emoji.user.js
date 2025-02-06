@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         红石中继站表情插件
 // @namespace    https://forum.mczwlt.net/
-// @version      1.5
+// @version      1.7
 // @description  社区表情临时插件
 // @author       LYOfficial
 // @match        https://forum.mczwlt.net/*
 // @grant        none
+// @downloadURL https://update.greasyfork.org/scripts/526000/%E7%BA%A2%E7%9F%B3%E4%B8%AD%E7%BB%A7%E7%AB%99%E8%A1%A8%E6%83%85%E6%8F%92%E4%BB%B6.user.js
+// @updateURL https://update.greasyfork.org/scripts/526000/%E7%BA%A2%E7%9F%B3%E4%B8%AD%E7%BB%A7%E7%AB%99%E8%A1%A8%E6%83%85%E6%8F%92%E4%BB%B6.meta.js
 // ==/UserScript==
 
 (function() {
@@ -107,8 +109,34 @@
             "https://forum.mczwlt.net/assets/uploads/files/1738770198740-61bba513-ee9d-4d10-a663-c5e5940bc7d9.png",
             "https://forum.mczwlt.net/assets/uploads/files/1738770199320-9dedc147-c62c-4da3-b6aa-48c7b002db43.png",
             "https://forum.mczwlt.net/assets/uploads/files/1738770207076-ba951b84-7f1e-4965-a757-4085f226f87f.png"
-        ]
+        ],
+            "默认": [
+                "https://forum.mczwlt.net/assets/uploads/files/1738813518549-f0bab031-5107-4318-851c-5d4d2f435eb1.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813519084-9b19a7b0-0bd5-46ea-bf79-c7519ab63d96.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813519658-f639aea7-58b0-448b-910f-0bfcd5c5366e.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813520207-cf900495-6c25-466a-b7ee-ec2ddb998dc7.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813520791-c469b0da-fd6e-40e1-afb8-919f2e10402d.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813571515-cbed55e0-4521-4efd-be87-dd56797bb06f.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813572281-a9e5b4c4-afcd-4066-968f-728aae18d52e.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813572954-df6408a2-e60c-421b-987e-55a99c556719.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813573514-7904e676-bcfc-49ed-8142-4025db437967.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813574071-718af84f-300b-41b9-b28e-92f6a571fea0.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813650757-37aee519-8c0d-4b26-b677-1596e7e969cc.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813651526-4a7c07b2-d6ae-4397-b5e8-ff89cfdcb145.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813652089-0335b355-0394-4e85-ad3d-03d52295803d.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813652720-f09e84f7-ae1c-4e48-abad-6924051c417a.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813653339-bd654b3a-e0fa-4cdb-871f-a626c6fae8b0.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813661040-d89e0488-4208-4544-9972-5a3f021222cb.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813661687-4da0943c-0ec9-43aa-a477-8cb8752757f6.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813662274-833d1030-d622-46a7-b478-d074233d78e0.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813662829-22c455c9-6da4-4e86-8744-0587322f139e.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813663444-852da93a-5b14-43c5-8aab-d1fb876ab870.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813668981-4cbdafd6-51c0-407e-b88d-9a1cc4496ce8.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813669502-c35761a8-c78f-4926-ac78-57ba15db0d9a.gif",
+                "https://forum.mczwlt.net/assets/uploads/files/1738813670077-86c592d7-6309-4cc2-bbf6-f800dd24bbf2.gif"
+            ]
         };
+
 
         const emojiPicker = document.createElement('div');
         emojiPicker.style.position = 'fixed';
@@ -125,11 +153,13 @@
 
         const categoryButtons = document.createElement('div');
         categoryButtons.style.textAlign = 'center';
+        categoryButtons.style.display = 'flex';
+        categoryButtons.style.justifyContent = 'space-between';
         emojiPicker.appendChild(categoryButtons);
 
         const emojiDiv = document.createElement('div');
         emojiDiv.style.display = 'grid';
-        emojiDiv.style.gridTemplateColumns = 'repeat(5, 1fr)';
+        emojiDiv.style.gridTemplateColumns = 'repeat(5, 1fr)'; // 每行5个表情
         emojiDiv.style.gap = '5px';
         emojiPicker.appendChild(emojiDiv);
 
@@ -144,7 +174,7 @@
                 img.style.width = '30px';
                 img.style.height = '30px';
                 img.style.cursor = 'pointer';
-                img.title = '点击插入表情';
+                img.标题 = '点击插入表情';
                 img.onclick = () => insertEmoji(url);
                 emojiDiv.appendChild(img);
             });
@@ -159,11 +189,10 @@
             }
         }
 
-        // 创建类别按钮
         const createCategoryButton = (category) => {
             const button = document.createElement('button');
-            button.className = 'btn btn-sm btn-link text-body fw-semibold composer-minimize';
-            button.innerHTML = `<i class="fa fa-angle-down"></i> <span class="d-none d-md-inline">${category}</span>`;
+            button.className = 'btn btn-sm btn-link text-body fw-semibold composer-minimize'; // 原站风格
+            button.innerText = category;
             button.style.margin = '5px';
             button.onclick = () => {
                 currentCategory = category;
@@ -174,11 +203,11 @@
 
         createCategoryButton("童童");
         createCategoryButton("绵羊");
-
+        createCategoryButton("默认");
 
         const emojiButton = document.createElement('button');
-        emojiButton.className = 'btn btn-primary composer-submit fw-bold';
-        emojiButton.innerHTML = '<i class="fa fa-check"></i> <span class="d-none d-md-inline">插入表情</span>';
+        emojiButton.className = 'btn btn-primary composer-submit fw-bold'; // 添加原站样式
+        emojiButton.innerText = '插入表情';
         emojiButton.style.position = 'fixed';
         emojiButton.style.bottom = '10px';
         emojiButton.style.right = '220px';
@@ -186,13 +215,13 @@
 
         emojiButton.onclick = () => {
             emojiPicker.style.display = emojiPicker.style.display === 'none' ? 'block' : 'none';
-            emojiButton.innerHTML = emojiPicker.style.display === 'none' ? '<i class="fa fa-check"></i> <span class="d-none d-md-inline">插入表情</span>' : '<i class="fa fa-times"></i> <span class="d-none d-md-inline">关闭表情</span>';
+            emojiButton.innerText = emojiPicker.style.display === 'none' ? '插入表情' : '关闭表情';
             if (emojiPicker.style.display === 'block') {
                 renderEmojis();
             }
         };
 
-        document.body.appendChild(emojiPicker);
-        document.body.appendChild(emojiButton);
+        document.内容.appendChild(emojiPicker);
+        document.内容.appendChild(emojiButton);
     };
 })();
