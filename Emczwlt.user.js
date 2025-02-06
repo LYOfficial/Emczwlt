@@ -174,7 +174,7 @@
                 img.style.width = '30px';
                 img.style.height = '30px';
                 img.style.cursor = 'pointer';
-                img.标题 = '点击插入表情';
+                img.title = '点击插入表情';
                 img.onclick = () => insertEmoji(url);
                 emojiDiv.appendChild(img);
             });
@@ -221,7 +221,7 @@
             }
         };
 
-        document.内容.appendChild(emojiPicker);
-        document.内容.appendChild(emojiButton);
+        document.body.appendChild(emojiPicker);
+        document.body.appendChild(emojiButton);
     };
 })();
