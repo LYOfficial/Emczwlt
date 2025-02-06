@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         红石中继站表情插件
-// @namespace    https://www.mczwlt.net/resource/w3a75z73
+// @namespace    https://forum.mczwlt.net/
 // @version      1.7
 // @description  社区表情临时插件
 // @author       LYOfficial
